@@ -43,7 +43,7 @@ namespace Coursova
 
         public void Shuffle()
         {
-            List<string> numbers = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8", "" };
+            List<string> numbers = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8", string.Empty };
             Random rand = new Random();
 
             do
@@ -57,16 +57,15 @@ namespace Coursova
                 for (int j = 0; j < 3; j++)
                 {
                     board[i, j].Text = numbers[index];
-                    if (numbers[index] == "")
+                    if (string.IsNullOrEmpty(numbers[index]))
                     {
                         emptySpot = new Point(i, j);
+                        board[i, j].Text = string.Empty; // Явно устанавливаем пустую строку
                     }
                     index++;
                 }
             }
-
-            moveCount = 0;
-            MoveCountChanged?.Invoke(moveCount);
+            MoveCount = 0;
         }
 
         private bool IsSolvable(List<string> numbers)
@@ -74,11 +73,11 @@ namespace Coursova
             int inversionCount = 0;
             for (int i = 0; i < numbers.Count - 1; i++)
             {
-                if (numbers[i] == "") continue;
+                if (string.IsNullOrWhiteSpace(numbers[i])) continue;
 
                 for (int j = i + 1; j < numbers.Count; j++)
                 {
-                    if (numbers[j] == "") continue;
+                    if (string.IsNullOrWhiteSpace(numbers[j])) continue;
 
                     if (int.Parse(numbers[i]) > int.Parse(numbers[j]))
                     {
@@ -86,7 +85,6 @@ namespace Coursova
                     }
                 }
             }
-
             return inversionCount % 2 == 0;
         }
 
@@ -139,13 +137,16 @@ namespace Coursova
             {
                 for (int j = 0; j < 3; j++)
                 {
+                    // Пустая клетка должна быть в (2,2)
                     if (i == 2 && j == 2)
                     {
-                        if (board[i, j].Text != "") return false;
+                        if (!string.IsNullOrEmpty(board[i, j].Text))
+                            return false;
                     }
                     else
                     {
-                        if (board[i, j].Text != expected.ToString()) return false;
+                        if (board[i, j].Text != expected.ToString())
+                            return false;
                         expected++;
                     }
                 }
@@ -163,32 +164,45 @@ namespace Coursova
                 for (int j = 0; j < 3; j++)
                 {
                     currentBoard[i, j] = board[i, j].Text;
-                    if (currentBoard[i, j] == "")
+                    if (string.IsNullOrEmpty(currentBoard[i, j]))
                     {
                         empty = new Point(i, j);
                     }
                 }
             }
-
-            return new PuzzleState(currentBoard, empty, 0);
+            return new PuzzleState(currentBoard, empty, MoveCount);
         }
 
         public async Task ApplySolution(List<PuzzleState> solution)
         {
-            foreach (var state in solution.Skip(1))
+            foreach (var state in solution.Skip(1)) // Пропускаем начальное состояние
             {
                 for (int i = 0; i < 3; i++)
                 {
                     for (int j = 0; j < 3; j++)
                     {
                         board[i, j].Text = state.Board[i, j];
+                        if (string.IsNullOrEmpty(state.Board[i, j]))
+                        {
+                            emptySpot = new Point(i, j);
+                        }
                     }
                 }
-                emptySpot = state.EmptyPosition;
-                moveCount++;
-                MoveCountChanged?.Invoke(moveCount);
+                MoveCount++;
                 await Task.Delay(300);
             }
+        }
+        public void PrintBoardState()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    Console.Write($"'{board[i, j].Text}' ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine($"Empty spot: {emptySpot}");
         }
     }
 }

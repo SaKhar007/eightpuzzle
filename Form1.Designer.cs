@@ -30,6 +30,7 @@
         {
             panel1 = new Panel();
             panel2 = new Panel();
+            button9 = new Button();
             label1 = new Label();
             labelMoves = new Label();
             button13 = new Button();
@@ -63,6 +64,7 @@
             // 
             panel2.BackColor = Color.DarkSlateGray;
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(button9);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(labelMoves);
             panel2.Controls.Add(button13);
@@ -83,6 +85,17 @@
             panel2.Size = new Size(840, 566);
             panel2.TabIndex = 0;
             // 
+            // button9
+            // 
+            button9.BackColor = Color.Honeydew;
+            button9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button9.Location = new Point(722, 102);
+            button9.Name = "button9";
+            button9.Size = new Size(100, 50);
+            button9.TabIndex = 17;
+            button9.Text = "Play";
+            button9.UseVisualStyleBackColor = false;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -99,7 +112,7 @@
             labelMoves.AutoSize = true;
             labelMoves.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 204);
             labelMoves.ForeColor = Color.Aquamarine;
-            labelMoves.Location = new Point(439, 162);
+            labelMoves.Location = new Point(472, 162);
             labelMoves.Name = "labelMoves";
             labelMoves.Size = new Size(111, 32);
             labelMoves.TabIndex = 15;
@@ -108,63 +121,70 @@
             // 
             // button13
             // 
-            button13.Location = new Point(724, 421);
+            button13.BackColor = Color.Honeydew;
+            button13.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Bold);
+            button13.Location = new Point(722, 446);
             button13.Name = "button13";
             button13.Size = new Size(100, 50);
             button13.TabIndex = 14;
             button13.Text = "Exit";
-            button13.UseVisualStyleBackColor = true;
+            button13.UseVisualStyleBackColor = false;
             button13.Click += button13_Click;
             // 
             // button12
             // 
-            button12.Font = new Font("Arial", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            button12.Location = new Point(724, 250);
+            button12.BackColor = Color.Honeydew;
+            button12.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Bold);
+            button12.Location = new Point(722, 275);
             button12.Name = "button12";
             button12.Size = new Size(100, 50);
             button12.TabIndex = 13;
             button12.Text = "RBFS";
-            button12.UseVisualStyleBackColor = true;
+            button12.UseVisualStyleBackColor = false;
             button12.Click += button12_Click;
             // 
             // buttonSolve
             // 
-            buttonSolve.Location = new Point(724, 162);
+            buttonSolve.BackColor = Color.Honeydew;
+            buttonSolve.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Bold);
+            buttonSolve.Location = new Point(722, 187);
             buttonSolve.Name = "buttonSolve";
             buttonSolve.Size = new Size(100, 50);
             buttonSolve.TabIndex = 12;
             buttonSolve.Text = "A*";
-            buttonSolve.UseVisualStyleBackColor = true;
+            buttonSolve.UseVisualStyleBackColor = false;
             buttonSolve.Click += buttonSolve_Click;
             // 
             // button10
             // 
             button10.BackColor = Color.Honeydew;
             button10.Font = new Font("Microsoft Sans Serif", 30F);
-            button10.Location = new Point(330, 389);
+            button10.Location = new Point(313, 409);
             button10.Name = "button10";
-            button10.Size = new Size(75, 75);
+            button10.Size = new Size(125, 125);
             button10.TabIndex = 9;
             button10.UseVisualStyleBackColor = false;
             button10.Click += button10_Click;
             // 
             // buttonShuffle
             // 
-            buttonShuffle.Location = new Point(724, 335);
+            buttonShuffle.BackColor = Color.Honeydew;
+            buttonShuffle.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Bold);
+            buttonShuffle.Location = new Point(722, 360);
             buttonShuffle.Name = "buttonShuffle";
             buttonShuffle.Size = new Size(100, 50);
             buttonShuffle.TabIndex = 8;
             buttonShuffle.Text = "Shuffle";
-            buttonShuffle.UseVisualStyleBackColor = true;
+            buttonShuffle.UseVisualStyleBackColor = false;
             buttonShuffle.Click += buttonShuffle_Click;
             // 
             // button8
             // 
             button8.BackColor = Color.Honeydew;
             button8.Font = new Font("Microsoft Sans Serif", 30F);
-            button8.Location = new Point(192, 389);
+            button8.Location = new Point(188, 409);
             button8.Name = "button8";
-            button8.Size = new Size(75, 75);
+            button8.Size = new Size(125, 125);
             button8.TabIndex = 7;
             button8.Text = "8";
             button8.UseVisualStyleBackColor = false;
@@ -173,9 +193,9 @@
             // 
             button7.BackColor = Color.Honeydew;
             button7.Font = new Font("Microsoft Sans Serif", 30F);
-            button7.Location = new Point(64, 389);
+            button7.Location = new Point(64, 409);
             button7.Name = "button7";
-            button7.Size = new Size(75, 75);
+            button7.Size = new Size(125, 125);
             button7.TabIndex = 6;
             button7.Text = "7";
             button7.UseVisualStyleBackColor = false;
@@ -184,9 +204,9 @@
             // 
             button6.BackColor = Color.Honeydew;
             button6.Font = new Font("Microsoft Sans Serif", 30F);
-            button6.Location = new Point(330, 274);
+            button6.Location = new Point(313, 287);
             button6.Name = "button6";
-            button6.Size = new Size(75, 75);
+            button6.Size = new Size(125, 125);
             button6.TabIndex = 5;
             button6.Text = "6";
             button6.UseVisualStyleBackColor = false;
@@ -195,9 +215,9 @@
             // 
             button5.BackColor = Color.Honeydew;
             button5.Font = new Font("Microsoft Sans Serif", 30F);
-            button5.Location = new Point(192, 274);
+            button5.Location = new Point(188, 286);
             button5.Name = "button5";
-            button5.Size = new Size(75, 75);
+            button5.Size = new Size(125, 125);
             button5.TabIndex = 4;
             button5.Text = "5";
             button5.UseVisualStyleBackColor = false;
@@ -206,9 +226,9 @@
             // 
             button4.BackColor = Color.Honeydew;
             button4.Font = new Font("Microsoft Sans Serif", 30F);
-            button4.Location = new Point(64, 274);
+            button4.Location = new Point(64, 285);
             button4.Name = "button4";
-            button4.Size = new Size(75, 75);
+            button4.Size = new Size(125, 125);
             button4.TabIndex = 3;
             button4.Text = "4";
             button4.UseVisualStyleBackColor = false;
@@ -217,9 +237,9 @@
             // 
             button3.BackColor = Color.Honeydew;
             button3.Font = new Font("Microsoft Sans Serif", 30F);
-            button3.Location = new Point(330, 162);
+            button3.Location = new Point(313, 163);
             button3.Name = "button3";
-            button3.Size = new Size(75, 75);
+            button3.Size = new Size(125, 125);
             button3.TabIndex = 2;
             button3.Text = "3";
             button3.UseVisualStyleBackColor = false;
@@ -228,9 +248,9 @@
             // 
             button2.BackColor = Color.Honeydew;
             button2.Font = new Font("Microsoft Sans Serif", 30F);
-            button2.Location = new Point(192, 162);
+            button2.Location = new Point(188, 162);
             button2.Name = "button2";
-            button2.Size = new Size(75, 75);
+            button2.Size = new Size(125, 125);
             button2.TabIndex = 1;
             button2.Text = "2";
             button2.UseVisualStyleBackColor = false;
@@ -241,7 +261,7 @@
             button1.Font = new Font("Microsoft Sans Serif", 30F);
             button1.Location = new Point(64, 162);
             button1.Name = "button1";
-            button1.Size = new Size(75, 75);
+            button1.Size = new Size(125, 125);
             button1.TabIndex = 0;
             button1.Text = "1";
             button1.UseVisualStyleBackColor = false;
@@ -282,5 +302,6 @@
         private Button button12;
         private Label labelMoves;
         private Label label1;
+        private Button button9;
     }
 }
