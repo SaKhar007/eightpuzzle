@@ -10,6 +10,8 @@ namespace Coursova
     {
         private Button[,] board = new Button[3, 3];
         private Point emptySpot;
+        private bool isPlaying = false;
+        public event Action GameStarted;
 
         private int moveCount = 0;
         public int MoveCount
@@ -23,6 +25,13 @@ namespace Coursova
         }
 
 
+        public void SetTilesClickable(bool clickable)
+        {
+            foreach (Button btn in board)
+            {
+                btn.Enabled = clickable;
+            }
+        }
         public void IncrementMoveCount()
         {
             moveCount++;
@@ -35,12 +44,22 @@ namespace Coursova
         public void Initialize(Button[,] buttons)
         {
             board = buttons;
+            SetTilesClickable(true);
             foreach (Button btn in board)
             {
                 btn.Click += Tile_Click;
             }
+            Shuffle();
         }
 
+        public void StartGame(Form1 form1)
+        {
+            isPlaying = true;
+            SetTilesClickable(true);
+            moveCount = 0;
+            GameStarted?.Invoke();
+            form1.EnableStopButton(true);
+        }
         public void Shuffle()
         {
             List<string> numbers = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8", string.Empty };
@@ -60,12 +79,12 @@ namespace Coursova
                     if (string.IsNullOrEmpty(numbers[index]))
                     {
                         emptySpot = new Point(i, j);
-                        board[i, j].Text = string.Empty; // Явно устанавливаем пустую строку
+                        board[i, j].Text = string.Empty; 
                     }
                     index++;
                 }
             }
-            MoveCount = 0;
+            moveCount = 0;
         }
 
         private bool IsSolvable(List<string> numbers)
@@ -137,7 +156,6 @@ namespace Coursova
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    // Пустая клетка должна быть в (2,2)
                     if (i == 2 && j == 2)
                     {
                         if (!string.IsNullOrEmpty(board[i, j].Text))
@@ -192,17 +210,6 @@ namespace Coursova
                 await Task.Delay(300);
             }
         }
-        public void PrintBoardState()
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    Console.Write($"'{board[i, j].Text}' ");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine($"Empty spot: {emptySpot}");
-        }
+        
     }
 }

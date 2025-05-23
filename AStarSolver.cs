@@ -5,8 +5,10 @@ namespace Coursova
 {
     public static class AStarSolver
     {
+        public static int ComparisonCount { get; private set; }
         public static List<PuzzleState> Solve(PuzzleState initialState)
         {
+            ComparisonCount = 0;
             var openSet = new HashSet<PuzzleState> { initialState };
             var closedSet = new HashSet<PuzzleState>();
             var cameFrom = new Dictionary<PuzzleState, PuzzleState>();
@@ -15,6 +17,7 @@ namespace Coursova
 
             while (openSet.Count > 0)
             {
+                ComparisonCount++;
                 var current = openSet.OrderBy(x => fScore[x]).First();
 
                 if (current.IsGoal())
@@ -27,6 +30,7 @@ namespace Coursova
 
                 foreach (var neighbor in current.GetNeighbors())
                 {
+                    ComparisonCount++;
                     if (closedSet.Contains(neighbor))
                         continue;
 

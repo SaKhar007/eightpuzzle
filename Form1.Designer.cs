@@ -30,6 +30,8 @@
         {
             panel1 = new Panel();
             panel2 = new Panel();
+            StopButton = new Button();
+            button3 = new Button();
             button9 = new Button();
             label1 = new Label();
             labelMoves = new Label();
@@ -43,7 +45,6 @@
             button6 = new Button();
             button5 = new Button();
             button4 = new Button();
-            button3 = new Button();
             button2 = new Button();
             button1 = new Button();
             panel1.SuspendLayout();
@@ -64,6 +65,8 @@
             // 
             panel2.BackColor = Color.DarkSlateGray;
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(StopButton);
+            panel2.Controls.Add(button3);
             panel2.Controls.Add(button9);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(labelMoves);
@@ -77,13 +80,37 @@
             panel2.Controls.Add(button6);
             panel2.Controls.Add(button5);
             panel2.Controls.Add(button4);
-            panel2.Controls.Add(button3);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
             panel2.Location = new Point(17, 17);
             panel2.Name = "panel2";
             panel2.Size = new Size(840, 566);
             panel2.TabIndex = 0;
+            // 
+            // StopButton
+            // 
+            StopButton.BackColor = Color.Honeydew;
+            StopButton.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Bold);
+            StopButton.Location = new Point(600, 446);
+            StopButton.Name = "StopButton";
+            StopButton.Size = new Size(100, 50);
+            StopButton.TabIndex = 18;
+            StopButton.Text = "Stop";
+            StopButton.UseVisualStyleBackColor = false;
+            StopButton.Visible = false;
+            StopButton.Click += StopButton_Click;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.Honeydew;
+            button3.Font = new Font("Microsoft Sans Serif", 30F);
+            button3.Location = new Point(313, 163);
+            button3.Name = "button3";
+            button3.Size = new Size(125, 125);
+            button3.TabIndex = 2;
+            button3.Text = "3";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button9
             // 
@@ -95,6 +122,7 @@
             button9.TabIndex = 17;
             button9.Text = "Play";
             button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
             // 
             // label1
             // 
@@ -233,17 +261,6 @@
             button4.Text = "4";
             button4.UseVisualStyleBackColor = false;
             // 
-            // button3
-            // 
-            button3.BackColor = Color.Honeydew;
-            button3.Font = new Font("Microsoft Sans Serif", 30F);
-            button3.Location = new Point(313, 163);
-            button3.Name = "button3";
-            button3.Size = new Size(125, 125);
-            button3.TabIndex = 2;
-            button3.Text = "3";
-            button3.UseVisualStyleBackColor = false;
-            // 
             // button2
             // 
             button2.BackColor = Color.Honeydew;
@@ -259,12 +276,14 @@
             // 
             button1.BackColor = Color.Honeydew;
             button1.Font = new Font("Microsoft Sans Serif", 30F);
+            button1.ForeColor = SystemColors.ControlText;
             button1.Location = new Point(64, 162);
             button1.Name = "button1";
             button1.Size = new Size(125, 125);
             button1.TabIndex = 0;
             button1.Text = "1";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // Form1
             // 
@@ -303,5 +322,6 @@
         private Label labelMoves;
         private Label label1;
         private Button button9;
+        private Button StopButton;
     }
 }

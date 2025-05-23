@@ -1,64 +1,49 @@
 ﻿// PuzzleState.cs
+using System.Text;
+
 namespace Coursova
 {
     public class PuzzleState
     {
+        private static readonly HeuristicCalculator heuristicCalculator = new ManhattanHeuristic();
         public string[,] Board { get; }
         public Point EmptyPosition { get; }
         public int G { get; } // cost from start
         public int H { get; } // heuristic
         public int F => G + H;
+
+
         public PuzzleState Parent { get; }
 
+        private static readonly string[,] GoalState = new string[3, 3]
+    {
+        { "1", "2", "3" },
+        { "4", "5", "6" },
+        { "7", "8", "" }
+    };
         public PuzzleState(string[,] board, Point emptyPos, int g, PuzzleState parent = null)
         {
             Board = (string[,])board.Clone();
             EmptyPosition = emptyPos;
             G = g;
             Parent = parent;
-            H = CalculateManhattanDistance();
-        }
-
-        private int CalculateManhattanDistance()
-        {
-            int distance = 0;
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    if (!string.IsNullOrEmpty(Board[i, j]))
-                    {
-                        int value = int.Parse(Board[i, j]);
-                        int targetX = (value - 1) / 3;
-                        int targetY = (value - 1) % 3;
-                        distance += Math.Abs(i - targetX) + Math.Abs(j - targetY);
-                    }
-                }
-            }
-            return distance;
+            H = heuristicCalculator.CalculateHeuristic(this.Board);
         }
 
         public bool IsGoal()
         {
-            int expected = 1;
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (i == 2 && j == 2)
-                    {
-                        if (Board[i, j] != "") return false;
-                    }
-                    else
-                    {
-                        if (Board[i, j] != expected.ToString()) return false;
-                        expected++;
-                    }
+                    if (Board[i, j] != GoalState[i, j])
+                        return false;
                 }
             }
             return true;
         }
 
+        public int UpdatedF { get; set; }
         public List<PuzzleState> GetNeighbors()
         {
             var neighbors = new List<PuzzleState>();
@@ -98,6 +83,14 @@ namespace Coursova
             return false;
         }
 
+        public string GetKey()
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 3; j++)
+                    sb.Append(Board[i, j] ?? " ");
+            return sb.ToString();
+        }
         public override int GetHashCode()
         {
             int hash = 17;
