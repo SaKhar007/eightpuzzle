@@ -1,10 +1,4 @@
-﻿// GameBoard.cs
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-
-namespace Coursova
+﻿namespace Coursova
 {
     public class GameBoard
     {
@@ -40,7 +34,7 @@ namespace Coursova
 
         public event Action<int> MoveCountChanged;
         public event Action PuzzleSolved;
-
+        
         public void Initialize(Button[,] buttons)
         {
             board = buttons;
@@ -59,6 +53,19 @@ namespace Coursova
             moveCount = 0;
             GameStarted?.Invoke();
             form1.EnableStopButton(true);
+        }
+        
+        public void testSet() // mojno v shuffle vstavit kogda nado setnut` shablon (no exception handlers for this command because it is not allowed for average user)
+        {
+            board[0, 0].Text = "5";
+            board[0, 1].Text = "2";
+            board[0, 2].Text = "4";
+            board[1, 0].Text = "3";
+            board[1, 1].Text = "6";
+            board[1, 2].Text = "1";
+            board[2, 0].Text = "8";
+            board[2, 1].Text = string.Empty;
+            board[2, 2].Text = "7";
         }
         public void Shuffle()
         {
@@ -87,7 +94,7 @@ namespace Coursova
             moveCount = 0;
         }
 
-        private bool IsSolvable(List<string> numbers)
+        private bool IsSolvable(List<string> numbers) 
         {
             int inversionCount = 0;
             for (int i = 0; i < numbers.Count - 1; i++)
@@ -128,7 +135,7 @@ namespace Coursova
             }
         }
 
-        private Point FindButtonPosition(Button btn)
+        private Point FindButtonPosition(Button btn) 
         {
             for (int i = 0; i < 3; i++)
             {
@@ -193,7 +200,7 @@ namespace Coursova
 
         public async Task ApplySolution(List<PuzzleState> solution)
         {
-            foreach (var state in solution.Skip(1)) // Пропускаем начальное состояние
+            foreach (var state in solution.Skip(1)) 
             {
                 for (int i = 0; i < 3; i++)
                 {

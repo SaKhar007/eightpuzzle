@@ -1,10 +1,3 @@
-// Form1.cs
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace Coursova
 {
     public partial class Form1 : Form
@@ -81,7 +74,7 @@ namespace Coursova
 
         private void buttonShuffle_Click(object sender, EventArgs e)
         {
-            gameBoard.Shuffle();
+            gameBoard.Shuffle(); 
         }
 
         public void EnableStopButton(bool status)

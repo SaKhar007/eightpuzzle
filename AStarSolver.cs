@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Coursova
+﻿namespace Coursova
 {
     public static class AStarSolver
     {

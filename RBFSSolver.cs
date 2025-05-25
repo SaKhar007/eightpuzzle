@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Coursova
+﻿namespace Coursova
 {
     public class RBFSSolver
     {
@@ -38,7 +34,6 @@ namespace Coursova
 
             while (true)
             {
-                ComparisonCount++;
                 successors = successors.OrderBy(s => s.UpdatedF).ToList();
                 var best = successors[0];
 
